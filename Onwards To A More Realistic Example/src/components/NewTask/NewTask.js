@@ -24,6 +24,7 @@ const NewTask = (props) => {
     );
   };
 
+  // Adding a comment.
   return (
     <Section>
       <TaskForm onEnterTask={enterTaskHandler} loading={isLoading} />
