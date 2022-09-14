@@ -9,6 +9,9 @@ const SimpleInput = (props) => {
 
   const inputNameChangeHandler = (event) => {
     event.preventDefault();
+    if (inputName.trim() === "") {
+      return;
+    }
     console.log(inputName);
     const enterValue = inputRef.current.value;
     console.log(enterValue);
