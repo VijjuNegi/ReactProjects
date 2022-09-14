@@ -1,29 +1,22 @@
 import React, { useState } from "react";
 const SimpleInput = (props) => {
   const [inputName, setInputName] = useState("");
-  // const [inputNameIsValid, setInputNameIsValid] = useState(false);
   const [inputNameTouch, setInputNameTouch] = useState(false);
 
   const inputNameIsValid = inputName.trim() !== "";
   const nameInputIsValid = !inputNameIsValid && inputNameTouch;
 
-  // useEffect(() => {
-  //   if (inputNameIsValid) {
-  //     console.log("name input is valid");
-  //   }
-  // }, [inputNameIsValid]);
+  let formIsValid = false;
+
+  if (inputNameIsValid) {
+    formIsValid = true;
+  }
 
   const inputNameChange = (event) => {
     setInputName(event.target.value);
-    // if (event.target.value.trim() !== "") {
-    //   setInputNameIsValid(true);
-    // }
   };
   const inputBlurHandler = () => {
     setInputNameTouch(true);
-    // if (inputName.trim() === "") {
-    //   setInputNameIsValid(false);
-    // }
   };
   const inputNameChangeHandler = (event) => {
     event.preventDefault();
@@ -31,11 +24,8 @@ const SimpleInput = (props) => {
     if (!inputNameIsValid) {
       return;
     }
-    // setInputNameIsValid(true);
 
     console.log(inputName);
-    // const enterValue = inputRef.current.value;
-    // console.log(enterValue);
 
     setInputName("");
     setInputNameTouch(false);
@@ -50,7 +40,6 @@ const SimpleInput = (props) => {
       <div className={enterInputClasses}>
         <label htmlFor="name">Your Name</label>
         <input
-          // ref={inputRef}
           type="text"
           id="name"
           onChange={inputNameChange}
@@ -62,7 +51,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
